@@ -1,0 +1,16 @@
+version: '3'
+services:  
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '3050:80'  
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client    
+    volumes:
+      - /app/node_modules #this folder is not mapped
+      - ./client:/app
